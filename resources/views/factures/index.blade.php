@@ -12,7 +12,7 @@ $partielles = $factures->getCollection()->filter(fn($f) => $f->montant_paye > 0 
 $montantDu  = $factures->getCollection()->whereIn('statut',['envoyee','en_retard'])->sum(fn($f)=>($f->commande?->total_ttc??0)-$f->montant_paye);
 @endphp
 
-<div class="pg-stats" style="grid-template-columns:repeat(5,1fr);">
+<div class="pg-stats">
     <div class="ps">
         <div class="ps-icon" style="background:var(--primary-bg);">
             <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--primary)" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>

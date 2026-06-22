@@ -97,6 +97,7 @@
         height: 100vh; position: sticky; top: 0;
         overflow-y: auto;
     }
+    .sb-overlay { display: none; }
 
     /* Logo */
     .sb-logo { padding: 18px 16px 14px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--sb-border); flex-shrink: 0; }
@@ -140,7 +141,13 @@
 
     /* Topbar — WHITE, separate from sidebar */
     .topbar { height: 60px; padding: 0 28px; background: #fff; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 20; box-shadow: var(--shadow-xs); }
-    .topbar-left {}
+    .topbar-left { display: flex; align-items: center; gap: 4px; min-width: 0; }
+    .topbar-burger {
+        display: none; flex-shrink: 0; width: 36px; height: 36px; margin-right: 8px;
+        background: var(--card2); border: 1px solid var(--border); border-radius: 8px;
+        align-items: center; justify-content: center; color: var(--text2); cursor: pointer;
+    }
+    .topbar-burger:hover { background: var(--primary-bg); border-color: var(--primary); color: var(--primary); }
     .topbar-title { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: -.2px; }
     .topbar-sub { font-size: 11px; color: var(--muted); margin-top: 1px; }
     .topbar-right { display: flex; align-items: center; gap: 10px; }
@@ -274,6 +281,7 @@
     .stats-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-bottom: 20px; }
     @media(max-width:1100px) { .stats-4 { grid-template-columns: repeat(2,1fr); } .stats-5 { grid-template-columns: repeat(3,1fr); } }
     @media(max-width:700px)  { .stats-3,.stats-4,.stats-5 { grid-template-columns: repeat(2,1fr); } }
+    @media(max-width:480px)  { .stats-3,.stats-4,.stats-5,.pg-stats { grid-template-columns: 1fr; } }
     /* backward-compat */
     .pg-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 14px; margin-bottom: 20px; }
     .ps { background: var(--card); border: 1px solid var(--border); border-radius: var(--r-lg); box-shadow: var(--shadow-sm); padding: 16px 18px; display: flex; align-items: center; gap: 12px; }
@@ -309,13 +317,47 @@
     .tc-hl { font-size: 12px; color: var(--primary-text); text-decoration: none; font-weight: 600; }
     .qb { display: flex; align-items: center; gap: 9px; padding: 11px 14px; background: var(--card2); border: 1px solid var(--border); border-radius: 10px; text-decoration: none; color: var(--text2); font-size: 13px; font-weight: 500; transition: all .15s; }
     .qb:hover { background: var(--primary-bg); border-color: var(--primary); color: var(--text); }
+
+    /* ════════════════════════════════════════
+       RESPONSIVE — tablette / mobile
+    ════════════════════════════════════════ */
+    @media (max-width: 968px) {
+        .sb {
+            position: fixed; left: 0; top: 0; height: 100vh;
+            transform: translateX(-100%);
+            transition: transform .25s ease;
+            z-index: 1000;
+            box-shadow: 0 0 40px rgba(0,0,0,.25);
+        }
+        .sb.open { transform: translateX(0); }
+        .sb-overlay {
+            display: block; position: fixed; inset: 0; background: rgba(15,23,42,.5);
+            z-index: 999; opacity: 0; pointer-events: none; transition: opacity .25s ease;
+        }
+        .sb-overlay.show { opacity: 1; pointer-events: auto; }
+        .topbar-burger { display: flex; }
+        .topbar { padding: 0 16px; }
+        .flash-zone { padding: 12px 16px 0; }
+        .content { padding: 16px 16px 32px; }
+        .page-header { gap: 12px; }
+    }
+    @media (min-width: 969px) {
+        .topbar-burger { display: none; }
+        .sb-overlay { display: none !important; }
+    }
+
+    /* Tableaux : défilement horizontal plutôt qu'écrasement sur petit écran */
+    @media (max-width: 768px) {
+        .table-wrap, .tc { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .table, .tbl { min-width: 640px; }
+    }
     </style>
     @stack('styles')
 </head>
-<body>
+<body x-data="{ sidebarOpen: false }">
 
 {{-- ═══ SIDEBAR ═══ --}}
-<aside class="sb">
+<aside class="sb" :class="{ open: sidebarOpen }">
 
     {{-- Logo --}}
     <div class="sb-logo">
@@ -451,14 +493,21 @@
     </div>
 </aside>
 
+<div class="sb-overlay" :class="{ show: sidebarOpen }" @click="sidebarOpen = false"></div>
+
 {{-- ═══ MAIN ═══ --}}
 <div class="main">
 
     {{-- Topbar --}}
     <div class="topbar">
         <div class="topbar-left">
-            <div class="topbar-title">@yield('page-title', 'GestiPro')</div>
-            @if(View::hasSection('page-subtitle'))<div class="topbar-sub">@yield('page-subtitle')</div>@endif
+            <button type="button" class="topbar-burger" @click="sidebarOpen = !sidebarOpen" aria-label="Ouvrir le menu">
+                <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+            <div style="min-width:0;">
+                <div class="topbar-title">@yield('page-title', 'GestiPro')</div>
+                @if(View::hasSection('page-subtitle'))<div class="topbar-sub">@yield('page-subtitle')</div>@endif
+            </div>
         </div>
         <div class="topbar-right">
             @yield('topbar-actions')
