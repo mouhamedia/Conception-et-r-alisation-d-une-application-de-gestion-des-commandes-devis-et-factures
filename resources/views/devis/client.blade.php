@@ -73,8 +73,8 @@
                 <tr style="border-bottom:1px solid var(--border);">
                     <td style="padding:14px 20px;font-size:14px;color:var(--text);font-weight:500;">{{ $ligne->produit->nom ?? '—' }}</td>
                     <td style="padding:14px 16px;text-align:center;font-size:14px;color:var(--muted);">{{ $ligne->quantite }}</td>
-                    <td style="padding:14px 16px;text-align:right;font-size:14px;color:var(--muted);">{{ number_format($ligne->prix_unitaire_snapshot, 0, ',', ' ') }} DZD</td>
-                    <td style="padding:14px 20px;text-align:right;font-size:14px;font-weight:600;color:var(--text);">{{ number_format($ligne->sous_total, 0, ',', ' ') }} DZD</td>
+                    <td style="padding:14px 16px;text-align:right;font-size:14px;color:var(--muted);">{{ number_format($ligne->prix_unitaire_snapshot, 0, ',', ' ') }} FCFA</td>
+                    <td style="padding:14px 20px;text-align:right;font-size:14px;font-weight:600;color:var(--text);">{{ number_format($ligne->sous_total, 0, ',', ' ') }} FCFA</td>
                 </tr>
                 @endforeach
             </tbody>
@@ -85,15 +85,15 @@
             <div style="min-width:240px;">
                 <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;color:var(--muted);">
                     <span>Sous-total HT</span>
-                    <span>{{ number_format($devis->sous_total_ht, 0, ',', ' ') }} DZD</span>
+                    <span>{{ number_format($devis->sous_total_ht, 0, ',', ' ') }} FCFA</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;padding:6px 0;font-size:13px;color:var(--muted);">
                     <span>TVA ({{ $devis->tva }}%)</span>
-                    <span>{{ number_format($devis->total_ttc - $devis->sous_total_ht, 0, ',', ' ') }} DZD</span>
+                    <span>{{ number_format($devis->total_ttc - $devis->sous_total_ht, 0, ',', ' ') }} FCFA</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;padding:10px 0 0;border-top:1px solid var(--border);font-size:16px;font-weight:800;color:var(--text);">
                     <span>Total TTC</span>
-                    <span>{{ number_format($devis->total_ttc, 0, ',', ' ') }} DZD</span>
+                    <span>{{ number_format($devis->total_ttc, 0, ',', ' ') }} FCFA</span>
                 </div>
             </div>
         </div>

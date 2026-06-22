@@ -118,7 +118,7 @@ class DevisController extends Controller
             $devis->entreprise_id,
             'devis_envoye',
             'Devis envoyé — ' . $devis->numero,
-            'Le devis ' . $devis->numero . ' pour ' . $devis->client_nom . ' a été marqué comme envoyé. Montant : ' . number_format($devis->total_ttc, 0, ',', ' ') . ' DZD.',
+            'Le devis ' . $devis->numero . ' pour ' . $devis->client_nom . ' a été marqué comme envoyé. Montant : ' . number_format($devis->total_ttc, 0, ',', ' ') . ' FCFA.',
             ['devis_id' => $devis->id]
         );
 
@@ -134,7 +134,7 @@ class DevisController extends Controller
                         $clientEntreprise->id,
                         'devis_recu',
                         'Devis reçu — ' . $devis->numero,
-                        'Vous avez reçu un devis de ' . $expediteur . '. Montant : ' . number_format($devis->total_ttc, 0, ',', ' ') . ' DZD.',
+                        'Vous avez reçu un devis de ' . $expediteur . '. Montant : ' . number_format($devis->total_ttc, 0, ',', ' ') . ' FCFA.',
                         ['devis_id' => $devis->id]
                     );
                 }

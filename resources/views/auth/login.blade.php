@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1 class="card-title">Bon retour 👋</h1>
+<h1 class="card-title">Bon retour</h1>
 <p class="card-subtitle">Connectez-vous à votre compte GestiPro</p>
 
 @if($errors->any())

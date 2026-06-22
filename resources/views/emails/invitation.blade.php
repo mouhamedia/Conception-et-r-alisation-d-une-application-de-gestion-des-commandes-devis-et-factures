@@ -19,7 +19,7 @@
 <body>
 <div class="container">
     <div class="header">
-        <h1>🚀 GestiPro</h1>
+        <h1>GestiPro</h1>
     </div>
     <div class="body">
         <p>Bonjour,</p>

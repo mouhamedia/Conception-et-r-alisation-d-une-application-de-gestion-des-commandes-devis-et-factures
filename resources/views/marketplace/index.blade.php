@@ -88,7 +88,7 @@
                 <div class="mkt-avatar">{{ strtoupper(substr($ent->nom, 0, 2)) }}</div>
                 <div class="mkt-nom">{{ $ent->nom }}</div>
                 <div class="mkt-meta">
-                    @if($ent->ville)📍 {{ $ent->ville }}@endif
+                    @if($ent->ville)<svg width="11" height="11" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="vertical-align:-1px;margin-right:2px;"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg> {{ $ent->ville }}@endif
                     @if($ent->email) · {{ $ent->email }}@endif
                 </div>
                 @if($ent->devise)<span class="mkt-tag">{{ $ent->devise }}</span>@endif

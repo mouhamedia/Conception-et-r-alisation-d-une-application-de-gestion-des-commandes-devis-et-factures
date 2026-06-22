@@ -156,7 +156,7 @@ $catActive       = request('categorie', '');
                 </td>
                 <td style="text-align:right;font-weight:700;color:var(--text);">
                     {{ number_format($produit->prix_unitaire, 0, ',', ' ') }}
-                    <span style="font-size:11px;font-weight:400;color:var(--muted);">DZD</span>
+                    <span style="font-size:11px;font-weight:400;color:var(--muted);">FCFA</span>
                 </td>
                 <td style="text-align:center;">
                     <div style="display:inline-flex;flex-direction:column;align-items:center;gap:4px;">

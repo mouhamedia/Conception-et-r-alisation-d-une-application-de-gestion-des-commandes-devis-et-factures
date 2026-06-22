@@ -182,6 +182,9 @@ $nbEmployes = $membres->where('pivot.role','employee')->count();
                         {{ $inv->role==='owner'?'Propriétaire':'Employé' }} · Expire le {{ $inv->expires_at->format('d/m/Y') }}
                     </div>
                 </div>
+                <button type="button" class="action-btn action-btn-ghost copy-invite-link" data-link="{{ route('invitations.accept', $inv->token) }}">
+                    Copier le lien
+                </button>
                 <span class="eq-badge eq-badge-amber">En attente</span>
             </div>
             @endforeach
@@ -280,4 +283,16 @@ $nbEmployes = $membres->where('pivot.role','employee')->count();
         </div>
     </div>
 </div>
+
+<script>
+document.querySelectorAll('.copy-invite-link').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+        navigator.clipboard.writeText(btn.dataset.link).then(function () {
+            var original = btn.textContent;
+            btn.textContent = 'Lien copié !';
+            setTimeout(function () { btn.textContent = original; }, 2000);
+        });
+    });
+});
+</script>
 @endsection

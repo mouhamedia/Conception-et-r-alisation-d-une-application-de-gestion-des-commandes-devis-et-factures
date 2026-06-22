@@ -106,7 +106,7 @@ $expireBientot = $devis->date_expiration && $devis->date_expiration->diffInDays(
                 <span style="display:inline-flex;padding:6px 16px;border-radius:20px;font-size:13px;font-weight:700;background:{{ $sc['bg'] }};color:{{ $sc['color'] }};">
                     {{ $labels[$devis->statut] ?? $devis->statut }}
                 </span>
-                <div style="font-size:24px;font-weight:800;color:var(--accent-t);">{{ number_format($devis->total_ttc,0,',',' ') }} DZD</div>
+                <div style="font-size:24px;font-weight:800;color:var(--accent-t);">{{ number_format($devis->total_ttc,0,',',' ') }} FCFA</div>
             </div>
         </div>
 
@@ -150,11 +150,11 @@ $expireBientot = $devis->date_expiration && $devis->date_expiration->diffInDays(
                         <div style="font-size:11px;color:var(--muted);font-family:monospace;margin-top:2px;">{{ $ligne->produit->reference_sku }}</div>
                         @endif
                     </td>
-                    <td class="doc-td" style="text-align:right;color:var(--muted);">{{ number_format($ligne->prix_unitaire_snapshot,0,',',' ') }} DZD</td>
+                    <td class="doc-td" style="text-align:right;color:var(--muted);">{{ number_format($ligne->prix_unitaire_snapshot,0,',',' ') }} FCFA</td>
                     <td class="doc-td" style="text-align:center;">
                         <span style="display:inline-flex;padding:2px 10px;background:var(--card2);border:1px solid var(--border);border-radius:20px;font-size:12px;font-weight:600;color:var(--text2);">{{ $ligne->quantite }}</span>
                     </td>
-                    <td class="doc-td" style="text-align:right;font-weight:700;color:var(--text);">{{ number_format($ligne->sous_total,0,',',' ') }} DZD</td>
+                    <td class="doc-td" style="text-align:right;font-weight:700;color:var(--text);">{{ number_format($ligne->sous_total,0,',',' ') }} FCFA</td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -166,15 +166,15 @@ $expireBientot = $devis->date_expiration && $devis->date_expiration->diffInDays(
             <div style="width:280px;background:var(--card2);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
                 <div style="display:flex;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--border);font-size:13px;">
                     <span style="color:var(--muted);">Sous-total HT</span>
-                    <span style="color:var(--text2);font-weight:600;">{{ number_format($devis->sous_total_ht,0,',',' ') }} DZD</span>
+                    <span style="color:var(--text2);font-weight:600;">{{ number_format($devis->sous_total_ht,0,',',' ') }} FCFA</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;padding:11px 16px;border-bottom:1px solid var(--border);font-size:13px;">
                     <span style="color:var(--muted);">TVA ({{ $devis->tva }}%)</span>
-                    <span style="color:var(--text2);font-weight:600;">{{ number_format($devis->sous_total_ht*$devis->tva/100,0,',',' ') }} DZD</span>
+                    <span style="color:var(--text2);font-weight:600;">{{ number_format($devis->sous_total_ht*$devis->tva/100,0,',',' ') }} FCFA</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:var(--accent-bg);">
                     <span style="font-size:14px;font-weight:700;color:var(--text);">Total TTC</span>
-                    <span style="font-size:18px;font-weight:800;color:var(--accent-t);">{{ number_format($devis->total_ttc,0,',',' ') }} DZD</span>
+                    <span style="font-size:18px;font-weight:800;color:var(--accent-t);">{{ number_format($devis->total_ttc,0,',',' ') }} FCFA</span>
                 </div>
             </div>
         </div>
@@ -264,7 +264,7 @@ $expireBientot = $devis->date_expiration && $devis->date_expiration->diffInDays(
             </div>
             <div class="side-row" style="border:none;padding-top:10px;margin-top:4px;border-top:1px solid var(--border);">
                 <span style="color:var(--muted);">Total TTC</span>
-                <span style="font-size:16px;font-weight:800;color:var(--accent-t);">{{ number_format($devis->total_ttc,0,',',' ') }}<span style="font-size:11px;margin-left:3px;">DZD</span></span>
+                <span style="font-size:16px;font-weight:800;color:var(--accent-t);">{{ number_format($devis->total_ttc,0,',',' ') }}<span style="font-size:11px;margin-left:3px;">FCFA</span></span>
             </div>
         </div>
 

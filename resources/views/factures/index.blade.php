@@ -44,7 +44,7 @@ $montantDu  = $factures->getCollection()->whereIn('statut',['envoyee','en_retard
         <div>
             <div class="ps-val" style="{{ $retard > 0 ? 'color:var(--c-red);' : '' }}">{{ $retard }}</div>
             <div class="ps-lbl">En retard</div>
-            @if($montantDu > 0)<div style="font-size:10px;color:var(--c-red);font-weight:600;margin-top:1px;">{{ number_format($montantDu,0,',',' ') }} DZD dû</div>@endif
+            @if($montantDu > 0)<div style="font-size:10px;color:var(--c-red);font-weight:600;margin-top:1px;">{{ number_format($montantDu,0,',',' ') }} FCFA dû</div>@endif
         </div>
     </div>
 </div>
@@ -98,8 +98,8 @@ $montantDu  = $factures->getCollection()->whereIn('statut',['envoyee','en_retard
                 <a href="{{ route('factures.show',$f) }}" style="font-weight:700;color:var(--primary);text-decoration:none;">{{ $f->numero }}</a>
             </td>
             <td style="font-weight:600;color:var(--text);">{{ $f->commande?->client_nom ?? '—' }}</td>
-            <td style="text-align:right;font-weight:700;color:var(--text);">{{ number_format($f->commande?->total_ttc??0,0,',',' ') }}<span style="font-size:11px;color:var(--muted);margin-left:3px;">DZD</span></td>
-            <td style="text-align:right;color:var(--muted);">{{ number_format($f->montant_paye,0,',',' ') }}<span style="font-size:11px;margin-left:3px;">DZD</span></td>
+            <td style="text-align:right;font-weight:700;color:var(--text);">{{ number_format($f->commande?->total_ttc??0,0,',',' ') }}<span style="font-size:11px;color:var(--muted);margin-left:3px;">FCFA</span></td>
+            <td style="text-align:right;color:var(--muted);">{{ number_format($f->montant_paye,0,',',' ') }}<span style="font-size:11px;margin-left:3px;">FCFA</span></td>
             <td style="text-align:center;">
                 @if($partielle)
                     <span class="sp sp-en_attente">Paiement partiel</span>

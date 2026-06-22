@@ -441,7 +441,7 @@
         </div>
         <div class="f-bottom">
             <p>© {{ date('Y') }} GestiPro · Gestion commerciale B2B · Sénégal</p>
-            <p>Fait avec ❤️ pour les entrepreneurs sénégalais</p>
+            <p>Conçu pour les entrepreneurs sénégalais</p>
         </div>
     </div>
 </footer>

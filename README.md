@@ -17,10 +17,11 @@ Développée dans le cadre d'un projet de fin d'études (mémoire de licence).
 | **Produits & Catégories** | Catalogue produits avec gestion de stock et alertes, catégories gérables |
 | **Devis** | Création, envoi client, acceptation/refus, conversion automatique en commande |
 | **Commandes** | Suivi de statut, génération automatique depuis devis accepté |
-| **Factures** | Génération PDF (logo inclus), envoi email avec lien sécurisé 30j, paiement partiel |
+| **Factures** | Génération PDF (logo inclus), envoi/renvoi email avec lien sécurisé 30j, paiement total ou partiel |
 | **Marketplace B2B** | Demandes de devis entre entreprises + messagerie par conversation |
 | **Notifications** | Centre de notifications avec résumé par type |
-| **Équipe** | Invitations par email, rôles propriétaire / membre |
+| **Équipe** | Invitations par email, changement de rôle, retrait d'un collaborateur |
+| **Dashboard** | KPI temps réel (CA du mois, devis en attente, commandes en cours, factures impayées), graphique sur 6 mois |
 | **Prédictions IA** | Module FastAPI (scikit-learn) pour prévisions et recommandations |
 
 ---
@@ -122,6 +123,19 @@ pip install -r requirements.txt
 
 # Lancer le serveur FastAPI
 uvicorn main:app --reload --port 8001
+```
+
+---
+
+## Déploiement Docker (VPS)
+
+Une configuration Docker (Nginx + PHP-FPM 8.3 + MySQL 8) est fournie pour déployer l'application sur un VPS. Voir [`docs/DEPLOY_DOCKER.md`](docs/DEPLOY_DOCKER.md) pour la procédure complète.
+
+```bash
+cp .env.docker.example .env   # adapter les mots de passe et le port
+docker compose build
+docker compose up -d
+docker compose exec app php artisan migrate --force
 ```
 
 ---

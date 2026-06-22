@@ -161,7 +161,7 @@ class DemoSeeder extends Seeder
             'payee_at' => now()->subDays(5),
         ]);
 
-        $this->command->info('✅ Données de démonstration créées !');
+        $this->command->info('Données de démonstration créées !');
         $this->command->info('  Owner  : admin@gestipro.sn / password');
         $this->command->info('  Employé: employe@gestipro.sn / password');
     }

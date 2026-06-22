@@ -81,7 +81,7 @@ $annulees  = $commandes->getCollection()->where('statut','annulee')->count();
                 <a href="{{ route('commandes.show',$c) }}" style="font-weight:700;color:var(--primary);text-decoration:none;">{{ $c->reference }}</a>
             </td>
             <td style="font-weight:600;color:var(--text);">{{ $c->client_nom }}</td>
-            <td style="text-align:right;font-weight:700;color:var(--text);">{{ number_format($c->total_ttc,0,',',' ') }}<span style="font-size:11px;color:var(--muted);margin-left:3px;">DZD</span></td>
+            <td style="text-align:right;font-weight:700;color:var(--text);">{{ number_format($c->total_ttc,0,',',' ') }}<span style="font-size:11px;color:var(--muted);margin-left:3px;">FCFA</span></td>
             <td style="text-align:center;">
                 <span class="sp sp-{{ $c->statut }}">{{ ['en_attente'=>'En attente','en_cours'=>'En cours','livree'=>'Livrée','annulee'=>'Annulée'][$c->statut]??$c->statut }}</span>
             </td>

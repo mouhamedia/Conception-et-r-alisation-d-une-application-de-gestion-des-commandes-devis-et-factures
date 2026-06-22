@@ -1,0 +1,44 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: gestipro-app:latest
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-8080}:80"
+    env_file:
+      - .env.docker
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+    volumes:
+      - storage_uploads:/var/www/html/storage/app/public
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - gestipro
+
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    env_file:
+      - .env.docker
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u\"$$MYSQL_USER\" -p\"$$MYSQL_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    networks:
+      - gestipro
+
+volumes:
+  mysql_data:
+  storage_uploads:
+
+networks:
+  gestipro:
+    driver: bridge

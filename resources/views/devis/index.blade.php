@@ -97,7 +97,7 @@ $refuses    = $devis->getCollection()->where('statut','refuse')->count();
                 @if($d->client_email)<div style="font-size:11px;color:var(--muted);margin-top:1px;">{{ $d->client_email }}</div>@endif
             </td>
             <td style="color:var(--muted);font-size:12px;">{{ $d->user?->prenom }} {{ $d->user?->name }}</td>
-            <td style="text-align:right;font-weight:700;color:var(--text);">{{ number_format($d->total_ttc,0,',',' ') }}<span style="font-size:11px;color:var(--muted);margin-left:3px;">DZD</span></td>
+            <td style="text-align:right;font-weight:700;color:var(--text);">{{ number_format($d->total_ttc,0,',',' ') }}<span style="font-size:11px;color:var(--muted);margin-left:3px;">FCFA</span></td>
             <td style="text-align:center;">
                 <span class="sp sp-{{ $d->statut }}">{{ ['brouillon'=>'Brouillon','envoye'=>'Envoyé','accepte'=>'Accepté','refuse'=>'Refusé'][$d->statut]??$d->statut }}</span>
             </td>

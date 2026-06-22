@@ -74,7 +74,7 @@
             <span class="dem-sp" style="background:{{ $c[0] }};color:{{ $c[1] }};">
                 {{ ['en_attente'=>'En attente','acceptee'=>'Acceptée','refusee'=>'Refusée','devis_cree'=>'Devis créé'][$d->statut]??$d->statut }}
             </span>
-            @if($d->budget)<span class="dem-budget">Budget : {{ number_format($d->budget, 0, ',', ' ') }} DZD</span>@endif
+            @if($d->budget)<span class="dem-budget">Budget : {{ number_format($d->budget, 0, ',', ' ') }} FCFA</span>@endif
             <span class="dem-date">{{ $d->created_at->diffForHumans() }} · par {{ $d->user->nom_complet }}</span>
         </div>
     </div>
@@ -132,7 +132,7 @@
             <span class="dem-sp" style="background:{{ $c[0] }};color:{{ $c[1] }};">
                 {{ ['en_attente'=>'En attente','acceptee'=>'Acceptée','refusee'=>'Refusée','devis_cree'=>'Devis reçu'][$d->statut]??$d->statut }}
             </span>
-            @if($d->budget)<span class="dem-budget">Budget : {{ number_format($d->budget, 0, ',', ' ') }} DZD</span>@endif
+            @if($d->budget)<span class="dem-budget">Budget : {{ number_format($d->budget, 0, ',', ' ') }} FCFA</span>@endif
             <span class="dem-date">{{ $d->created_at->diffForHumans() }}</span>
         </div>
     </div>

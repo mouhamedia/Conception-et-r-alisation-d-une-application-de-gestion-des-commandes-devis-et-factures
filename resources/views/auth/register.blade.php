@@ -5,7 +5,11 @@
 @section('content')
 
 <h1 class="card-title">Créer votre compte</h1>
+@if($invitation ?? null)
+<p class="card-subtitle">Vous rejoignez <strong>{{ $invitation->entreprise->nom }}</strong> en tant que {{ $invitation->role === 'owner' ? 'Propriétaire' : 'Employé' }}</p>
+@else
 <p class="card-subtitle">Rejoignez GestiPro et gérez votre activité commerciale</p>
+@endif
 
 @if($errors->any())
 <div class="alert-error">
@@ -36,8 +40,9 @@
     <div class="form-group">
         <label for="email">Adresse email *</label>
         <input type="email" id="email" name="email"
-               value="{{ old('email') }}"
+               value="{{ old('email', $invitation->email ?? '') }}"
                placeholder="vous@exemple.com"
+               @if($invitation ?? null) readonly @endif
                required>
     </div>
 

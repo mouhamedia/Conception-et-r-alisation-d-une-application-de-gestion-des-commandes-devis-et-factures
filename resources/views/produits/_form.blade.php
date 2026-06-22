@@ -92,11 +92,11 @@
                 </div>
 
                 <div class="f-field">
-                    <label class="f-lbl">Prix unitaire HT (DZD) *</label>
+                    <label class="f-lbl">Prix unitaire HT (FCFA) *</label>
                     <div style="position:relative;">
                         <input type="number" name="prix_unitaire" value="{{ old('prix_unitaire', $produit?->prix_unitaire) }}"
                                required min="0" step="1" class="f-inp" placeholder="0" style="padding-right:60px;">
-                        <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--muted);pointer-events:none;">DZD</span>
+                        <span style="position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--muted);pointer-events:none;">FCFA</span>
                     </div>
                     @error('prix_unitaire')<p style="font-size:12px;color:#f87171;margin-top:4px;">{{ $message }}</p>@enderror
                 </div>

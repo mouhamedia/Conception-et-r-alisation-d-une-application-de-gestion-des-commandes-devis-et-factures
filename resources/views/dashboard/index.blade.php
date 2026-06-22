@@ -31,7 +31,7 @@ $dataDevis = collect($chartData)->pluck('devis')->toJson();
 {{-- Greeting --}}
 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:10px;">
     <div>
-        <h1 style="font-size:22px;font-weight:800;color:var(--text);line-height:1.2;">Bonjour, {{ $prenom }} 👋</h1>
+        <h1 style="font-size:22px;font-weight:800;color:var(--text);line-height:1.2;">Bonjour, {{ $prenom }}</h1>
         <p style="color:var(--muted);font-size:13px;margin-top:3px;text-transform:capitalize;">{{ now()->isoFormat('dddd D MMMM YYYY') }}</p>
     </div>
     @if($stats['devis_expirent_bientot'] > 0)
@@ -51,7 +51,7 @@ $dataDevis = collect($chartData)->pluck('devis')->toJson();
                 <svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke="var(--primary)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
             </div>
         </div>
-        <div class="kpi-val">{{ number_format($ca,0,',',' ') }}<span style="font-size:13px;font-weight:600;color:var(--muted);margin-left:4px;">DZD</span></div>
+        <div class="kpi-val">{{ number_format($ca,0,',',' ') }}<span style="font-size:13px;font-weight:600;color:var(--muted);margin-left:4px;">FCFA</span></div>
         @if($caEvol != 0)
         <span class="bp {{ $caEvol > 0 ? 'bp-g' : 'bp-r' }}">
             <svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="{{ $caEvol > 0 ? 'M7 17l9.2-9.2M17 17V7H7' : 'M17 7l-9.2 9.2M7 7v10h10' }}"/></svg>
@@ -92,7 +92,7 @@ $dataDevis = collect($chartData)->pluck('devis')->toJson();
             </div>
         </div>
         <div class="kpi-val" style="color:var(--c-red);">{{ $stats['factures_impayees'] }}</div>
-        <div style="font-size:12px;color:var(--c-red);font-weight:600;margin-top:2px;">{{ number_format($stats['factures_montant_du'],0,',',' ') }} DZD dû</div>
+        <div style="font-size:12px;color:var(--c-red);font-weight:600;margin-top:2px;">{{ number_format($stats['factures_montant_du'],0,',',' ') }} FCFA dû</div>
     </div>
 </div>
 
@@ -158,7 +158,7 @@ $dataDevis = collect($chartData)->pluck('devis')->toJson();
             <tr>
                 <td><a href="{{ route('commandes.show',$cmd) }}" style="color:var(--primary);font-weight:600;text-decoration:none;">{{ $cmd->reference }}</a></td>
                 <td style="color:var(--muted);">{{ $cmd->client_nom }}</td>
-                <td style="font-weight:600;color:var(--text);">{{ number_format($cmd->total_ttc,0,',',' ') }}<span style="color:var(--muted);font-size:11px;margin-left:3px;">DZD</span></td>
+                <td style="font-weight:600;color:var(--text);">{{ number_format($cmd->total_ttc,0,',',' ') }}<span style="color:var(--muted);font-size:11px;margin-left:3px;">FCFA</span></td>
                 <td>
                     <span class="sp sp-{{ $cmd->statut }}">{{ match($cmd->statut){'en_attente'=>'En attente','en_cours'=>'En cours','livree'=>'Livrée','annulee'=>'Annulée',default=>ucfirst($cmd->statut)} }}</span>
                 </td>
@@ -248,7 +248,7 @@ $dataDevis = collect($chartData)->pluck('devis')->toJson();
                         backgroundColor:'rgba(15,23,42,.9)',
                         borderColor:'rgba(0,0,0,.08)',borderWidth:1,
                         titleColor:'#f1f5f9',bodyColor:'rgba(148,163,184,.9)',padding:10,
-                        callbacks:{label:c=>' '+c.dataset.label+': '+new Intl.NumberFormat('fr').format(c.raw)+' DZD'}
+                        callbacks:{label:c=>' '+c.dataset.label+': '+new Intl.NumberFormat('fr').format(c.raw)+' FCFA'}
                     }
                 },
                 scales:{

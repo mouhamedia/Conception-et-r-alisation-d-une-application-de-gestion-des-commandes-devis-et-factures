@@ -459,7 +459,9 @@
                     @endforeach
                 @else
                     <div style="text-align:center;padding:20px 0;">
-                        <div style="font-size:26px;margin-bottom:6px;">📦</div>
+                        <div style="width:36px;height:36px;border-radius:10px;background:var(--card2);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">
+                            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--muted)" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+                        </div>
                         <p style="font-size:12px;color:var(--muted);">Aucune vente enregistrée pour générer des recommandations.</p>
                     </div>
                 @endif
@@ -589,7 +591,9 @@
                     </div>
                 @empty
                     <div style="text-align:center;padding:24px 0;">
-                        <div style="font-size:28px;margin-bottom:6px;">✅</div>
+                        <div style="width:36px;height:36px;border-radius:10px;background:var(--c-green-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 8px;">
+                            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="var(--c-green)" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+                        </div>
                         <p style="font-size:13px;color:var(--muted);">Tous les stocks sont suffisants.</p>
                     </div>
                 @endforelse

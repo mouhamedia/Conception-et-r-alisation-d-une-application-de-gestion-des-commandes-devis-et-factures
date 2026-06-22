@@ -38,7 +38,7 @@ class InvitationService
 
     public function accepter(Invitation $invitation, User $user): void
     {
-        $dejamembre = $user->entreprises()
+        $dejaMembre = $user->entreprises()
             ->where('entreprise_id', $invitation->entreprise_id)
             ->exists();
 
