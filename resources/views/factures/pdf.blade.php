@@ -293,9 +293,25 @@ table.totals .t-val   { text-align: right; font-weight: 600; color: #1a1a2e; }
     if ($facture->entreprise->logo) {
         $logoPath = storage_path('app/public/' . $facture->entreprise->logo);
         if (file_exists($logoPath)) {
-            $ext  = strtolower(pathinfo($logoPath, PATHINFO_EXTENSION));
-            $mime = $ext === 'svg' ? 'image/svg+xml' : 'image/' . $ext;
-            $logoBase64 = 'data:' . $mime . ';base64,' . base64_encode(file_get_contents($logoPath));
+            $ext = strtolower(pathinfo($logoPath, PATHINFO_EXTENSION));
+            try {
+                if ($ext === 'svg') {
+                    $logoBase64 = 'data:image/svg+xml;base64,' . base64_encode(file_get_contents($logoPath));
+                } elseif (in_array($ext, ['png', 'jpg', 'jpeg', 'gif'])) {
+                    $logoBase64 = 'data:image/' . $ext . ';base64,' . base64_encode(file_get_contents($logoPath));
+                } elseif (function_exists('imagecreatefromstring')) {
+                    // Formats non garantis par dompdf (webp, bmp...) : on repasse par GD en PNG
+                    $image = imagecreatefromstring(file_get_contents($logoPath));
+                    if ($image !== false) {
+                        ob_start();
+                        imagepng($image);
+                        $logoBase64 = 'data:image/png;base64,' . base64_encode(ob_get_clean());
+                        imagedestroy($image);
+                    }
+                }
+            } catch (\Throwable $e) {
+                $logoBase64 = null;
+            }
         }
     }
 @endphp

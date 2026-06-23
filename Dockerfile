@@ -9,9 +9,9 @@ RUN npm run build
 # ---------- Stage 2: application PHP ----------
 FROM php:8.3-fpm-alpine AS app
 
-RUN apk add --no-cache nginx supervisor libpng libjpeg-turbo freetype libzip oniguruma \
-    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libpng-dev libjpeg-turbo-dev freetype-dev libzip-dev oniguruma-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+RUN apk add --no-cache nginx supervisor libpng libjpeg-turbo libwebp freetype libzip oniguruma \
+    && apk add --no-cache --virtual .build-deps $PHPIZE_DEPS libpng-dev libjpeg-turbo-dev libwebp-dev freetype-dev libzip-dev oniguruma-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
     && docker-php-ext-install pdo_mysql mbstring bcmath gd zip opcache \
     && apk del .build-deps
 
